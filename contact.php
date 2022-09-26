@@ -2,13 +2,14 @@
 
 class Contact{
 
-    public function __construct(
-    private int $id, 
-    private string $email, 
-    private string $phone_number,
-    private string $role,
-    private Host $host,
-    private Customer $customer;)
+    private int $id;
+    private string $email; 
+    private string $phone_number;
+    private string $role;
+    private Host $host;
+    private Customer $customer;
+
+    public function construct(int $id, string $email, string $phone_number, string $role, Host $host, Customer $customer)
     {
         $this->id = $id;
         $this->email = substr($email,0,255);
