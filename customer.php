@@ -9,7 +9,7 @@ class Customer{
     {
         $this->code = substr($code,0,255);
         $this->name = substr($name,0,255);
-        $this->notes = substr($email,0,1000);
+        $this->notes = substr(notes,0,1000);
     }
     
     public function getCode () : string{
