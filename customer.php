@@ -2,14 +2,16 @@
 
 class Customer{
 
-    public function __construct(
-    private string $code, 
-    private string $name, 
-    private string $notes,)
+    private int $id;
+    private string $code; 
+    private string $name;
+    private string $notes;
+
+    public function construct(int $id, string $code, string $name, string $notes)
     {
         $this->code = substr($code,0,255);
         $this->name = substr($name,0,255);
-        $this->notes = substr(notes,0,1000);
+        $this->notes = substr($notes,0,1000);
     }
     
     public function getCode () : string{
