@@ -1,17 +1,15 @@
 <?php
 class Host{
-    private int $id,
-    private string $code,
-    private string $name,
-    private string $notes
+    private int $id;
+    private string $code;
+    private string $name;
+    private string $notes;
     
-    public function construct(int $id, string $code, string $name, string $notes){   
+    public function __construct(int $id, string $code, string $name, string $notes){   
         $this->id = $id;
         $this->code = substr($code,0,255);
         $this->name = substr($name,0,255);
         $this->notes = substr($notes,0,255);
-        if($id = ())
-    
     }
 
     public function getId(): int
@@ -24,7 +22,7 @@ class Host{
     }
     public function getName(): string
     {
-        return $this->email;
+        return $this->name;
     }
     public function getNotes(): string
     {

@@ -9,7 +9,7 @@ class Contact{
     private Host $host;
     private Customer $customer;
 
-    public function construct(int $id, string $email, string $phone_number, string $role, Host $host, Customer $customer)
+    public function __construct(int $id, string $email, string $phone_number, string $role, Host $host, Customer $customer)
     {
         $this->id = $id;
         $this->email = substr($email,0,255);
@@ -35,11 +35,11 @@ class Contact{
         return $this ->role;
     }
 
-    public function getHost_id () : Host{
+    public function getHost () : Host{
         return $this ->host;
     }
 
-    public function getPhone_number () : Customer{
+    public function getCustomer () : Customer{
         return $this ->customer;
     }
 

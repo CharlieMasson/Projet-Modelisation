@@ -12,7 +12,8 @@ class Environment{
     private bool $ip_restriction;
     private Project $project;
 
-    public function construct(int $id, string $name, string $link, string $ip_adress, string $ssh_port, string $ssh_username, string $phpmyadmin_link, bool $ip_restriction, Project $project)
+
+    public function __construct(int $id, string $name, string $link, string $ip_adress, string $ssh_port, string $ssh_username, string $phpmyadmin_link, bool $ip_restriction, Project $project)
     {
         $this->id = $id;
         $this->name = substr($name,0,255);

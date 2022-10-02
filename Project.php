@@ -14,7 +14,7 @@ class Project
     private string $note;
     private Host $host;
     private Customer $customer;
-    public function  __construct( $id, $name, $code, $lastpass_folder, $link_mock_ups, $managed_server, $note, $host, $customer)
+    public function __construct( $id, $name, $code, $lastpass_folder, $link_mock_ups, $managed_server, $note, $host, $customer)
     {
         $this->id = $id;
         $this->name = substr($name,0, 255);
@@ -83,7 +83,7 @@ class Project
         $this->managed_server = $managed_server;
     }
 
-    public function getNote(): string
+    public function getNotes(): string
     {
         return $this->note;
     }

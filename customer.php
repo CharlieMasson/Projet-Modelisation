@@ -7,11 +7,16 @@ class Customer{
     private string $name;
     private string $notes;
 
-    public function construct(int $id, string $code, string $name, string $notes)
+    public function __construct(int $id, string $code, string $name, string $notes)
     {
+        $this-> id = $id;
         $this->code = substr($code,0,255);
         $this->name = substr($name,0,255);
         $this->notes = substr($notes,0,1000);
+    }
+
+    public function getId () : int{
+        return $this -> id;
     }
     
     public function getCode () : string{
@@ -22,8 +27,12 @@ class Customer{
         return $this ->name;
     }
 
-    public function getNote () : string{
-        return $this ->note;
+    public function getNotes () : string{
+        return $this ->notes;
+    }
+
+    public function setId (int $id): void{
+        $this->id = $id;
     }
 
     public function setCode (string $code): void{
