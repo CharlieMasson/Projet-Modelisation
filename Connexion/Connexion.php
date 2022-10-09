@@ -24,3 +24,9 @@ die('Erreur : ' . $e->getMessage());
 }
 return $co;
 }
+
+function deconnexion(){
+	$var = NULL;
+	return $var;
+}
+	
