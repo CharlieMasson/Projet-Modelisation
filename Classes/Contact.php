@@ -1,4 +1,8 @@
 <?php
+namespace Classes;
+
+use Host;
+use Customer;
 
 class Contact implements AllInterface{
 

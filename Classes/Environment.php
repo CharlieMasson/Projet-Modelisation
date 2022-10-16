@@ -1,5 +1,7 @@
 <?php
+namespace Classes;
 
+use Project;
 class Environment implements AllInterface{
 
     use HasId;
