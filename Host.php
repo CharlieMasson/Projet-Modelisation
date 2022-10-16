@@ -1,3 +1,7 @@
+<?php
+    require 'autoloader.php';
+    use Classes\Host;
+    ?>
 <!doctype html>
 <html lang="fr">
   <head>

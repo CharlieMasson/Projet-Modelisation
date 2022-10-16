@@ -1,3 +1,7 @@
+<?php
+    require 'autoloader.php';
+    use Classes\Project;
+?>
 <!doctype html>
 <html lang="fr">
   <head>
@@ -46,6 +50,7 @@
                 </thead>
                 <tbody>
                 <?php
+
                     require 'Connexion/Connexion.php';
                     $co = connexionBdd();
                     $statement = $co->query('SELECT id, name, code FROM project ORDER BY id ASC');
