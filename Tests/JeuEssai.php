@@ -1,8 +1,12 @@
-<?php
-require '../Autoloader.php';
-    use Classes\Connexion;
-?>
 <table>
+    <?php
+    require '../autoloader.php';
+    use Classes\Contact;
+    use Classes\Customer;
+    use Classes\Environment;
+    use Classes\Host;
+    use Classes\Project;
+    ?>
     <thead>
         <tr>
             <th>
@@ -24,8 +28,8 @@ require '../Autoloader.php';
     </thead>
     <tbody>
         <?php
-        $co = new Connexion();
-        $co->connexionBDD();
+        require_once __DIR__.'/../Connexion/Connexion.php';
+        $co = connexionBdd();
         $cat = $co->query('SELECT *
             FROM contact
             ORDER BY id DESC');
@@ -62,6 +66,7 @@ require '../Autoloader.php';
         </thead>
         <tbody>
 <?php
+$co = connexionBdd();
 $cat = $co->query('SELECT *
             FROM customer
             ORDER BY id DESC');
@@ -112,6 +117,7 @@ echo '<td>' .$result['notes'] . '</td>';
         </thead>
         <tbody>
 <?php
+$co = connexionBdd();
 $cat = $co->query('SELECT *
             FROM environment
             ORDER BY id DESC');
@@ -150,6 +156,7 @@ while ($result = $cat->fetch()) {
         </thead>
         <tbody>
     <?php
+    $co = connexionBdd();
     $cat = $co->query('SELECT *
             FROM host
             ORDER BY id DESC');
@@ -197,6 +204,7 @@ while ($result = $cat->fetch()) {
             </thead>
             <tbody>
         <?php
+        $co = connexionBdd();
         $cat = $co->query('SELECT *
             FROM project
             ORDER BY id DESC');
