@@ -3,4 +3,4 @@ Projet de modélisation en php comportant 5 classes: Contact, Customer, Environm
 Tests contient deux fichiers de test: 
 - JeuEssai.php contient un jeu d'essai afin de tester la base de données
 - TestClasses.php teste les classes et interfaces du projet
-les identifiants de connexion à la base de données sont dans Connexion/Config.php
+les identifiants de connexion à la base de données sont dans Classes/Connexion.php

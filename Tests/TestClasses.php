@@ -1,14 +1,10 @@
 <?php
-require_once __DIR__.'/../Interfaces/AllInterface.php';
-require_once __DIR__.'/../Traits/HasId.php';
-require_once __DIR__.'/../Traits/HasCode.php';
-require_once __DIR__.'/../Traits/HasName.php';
-require_once __DIR__.'/../Traits/HasNotes.php';
-require_once __DIR__.'/../Classes/Project.php';
-require_once __DIR__.'/../Classes/Contact.php';
-require_once __DIR__.'/../Classes/Customer.php';
-require_once __DIR__.'/../Classes/Environment.php';
-require_once __DIR__.'/../Classes/Host.php';
+require '../Autoloader.php';
+    use Classes\Customer;
+    use Classes\Host;
+    use Classes\Project;
+    use Classes\Environment;
+    use Classes\Contact;
 
 $myCustomer = new Customer(1, "DT2", "Jean-Paul", "notes sur Jean-Paul");
 $myHost = new Host(1, "D3Z", "Jean-Marcel", "notes sur Jean-Marcel");

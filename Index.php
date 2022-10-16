@@ -1,12 +1,13 @@
 <?php
-    require 'autoloader.php';
+    require 'Autoloader.php';
     use Classes\Project;
+    use Classes\Connexion;
 ?>
 <!doctype html>
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <title>PortFolio</title>
+    <title>Gestion de Projets MentalWorks</title>
     <link rel="stylesheet" href="Style.css" type="text/css">
     <!--MetaName-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,22 +20,23 @@
 
   </head>
 
-  <div class="container1">
-    <img src="Images/logo_main.png"> 
-    <div class="hamburger-menu">
-        <input id="menu__toggle" type="checkbox" />
-        <label class="menu__btn" for="menu__toggle">
-        <span></span>
-        </label>
+    <div class="container1">
+        <img src="Images/logo_main.png"> 
+        <div class="hamburger-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+            <span></span>
+            </label>
 
-        <ul class="menu__box">
-        <li><a class="menu__item"><i class="fas fa-home"></i> Tableau de bord</a></li>
-        <li><a class="menu__item" href="Index.php"><i class="fas fa-user-circle"></i> Projets</a></li>
-        <li><a class="menu__item" href="Customer.php"><i class="fas fa-user-circle"></i> Clients</a></li>
-        <li><a class="menu__item" href="Host.php"><i class="fas fa-check-square"></i> Hebergeurs</a></li>
-        </ul>
+            <ul class="menu__box">
+            <li><a class="menu__item"><i class="fas fa-home"></i> Tableau de bord</a></li>
+            <li><a class="menu__item" href="Index.php"><i class="fas fa-user-circle"></i> Projets</a></li>
+            <li><a class="menu__item" href="Customer.php"><i class="fas fa-user-circle"></i> Clients</a></li>
+            <li><a class="menu__item" href="InsertCustomer.php"><i class="fas fa-user-circle"></i> Ajouter un Client</a></li>
+            <li><a class="menu__item" href="Host.php"><i class="fas fa-check-square"></i> Hebergeurs</a></li>
+            </ul>
+        </div>
     </div>
-</div>
 <div class="container">
 <div class="container">
     <div class="container_admin">
@@ -50,9 +52,8 @@
                 </thead>
                 <tbody>
                 <?php
-
-                    require 'Connexion/Connexion.php';
-                    $co = connexionBdd();
+                    $co = new Connexion();
+                    $co->connexionBDD();
                     $statement = $co->query('SELECT id, name, code FROM project ORDER BY id ASC');
                     while($item = $statement->fetch()) {
                         echo '<tr>';
@@ -61,7 +62,7 @@
                         echo '<td>'. $item['code'] . '</td>';
                         echo '</tr>';
                     }
-                    $co = deconnexion();
+                    $co->deconnexion();
                     ?>
 
                 </tbody>

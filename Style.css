@@ -116,3 +116,7 @@ table{
 td{
   border: solid 2px black;
 }
+
+.boutonAjouter{
+  text-align: center;
+}
