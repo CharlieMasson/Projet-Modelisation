@@ -1,0 +1,113 @@
+<?php
+namespace App\Classes;
+
+use Host;
+use Customer;
+
+class Project
+{
+    use HasId;
+    use HasName;
+
+    private int $id;
+    private string $name;
+    private string $code;
+    private string $lastpassFolder;
+    private string $linkMockUps;
+    private bool $managedServer;
+    private string $note;
+    private Host $host;
+    private Customer $customer;
+    
+    public function __construct( int $id, string $name, string $code, string $lastpassFolder, string $linkMockUps, bool $managedServer, string $note, Host $host, Customer $customer)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->code = $code;
+        $this->lastpassFolder = $lastpassFolder;
+        $this->linkMockUps = $linkMockUps;
+        $this->managedServer = $managedServer;
+        $this->note = $note;
+        $this->host = $host;
+        $this->customer = $customer;
+    }
+
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+    public function setCode(string $code): void
+    {
+        $this->code = $code;
+    }
+
+    public function getLastpassFolder(): string
+    {
+        return $this->lastpassFolder;
+    }
+    public function setLastpassFolder(string $lastpassFolder): void
+    {
+        $this->lastpassFolder = $lastpassFolder;
+    }
+
+    public function getLinkMockUps(): string
+    {
+        return $this->linkMockUps;
+    }
+    public function setLinkMockUps(string $linkMockUps): void
+    {
+        $this->linkMockUps = $linkMockUps;
+    }
+
+    public function getManagedServer(): bool
+    {
+        return $this->managedServer;
+    }
+    public function setManagedServer(bool $managedServer): void
+    {
+        $this->managedServer = $managedServer;
+    }
+
+    public function getNotes(): string
+    {
+        return $this->note;
+    }
+    public function setNote(string $note): void
+    {
+        $this->note = $note;
+    }
+
+    public function getHost(): Host
+    {
+        return $this->host;
+    }
+
+    public function setHost(Host $host): void
+    {
+        $this->host = $host;
+    }
+
+    public function getCustomer(): Customer
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(Customer $customer): void
+    {
+        $this->customer = $customer;
+    }
+
+    public function echoAll(){
+        echo "<h2> Project : </h2>";
+        echo "<ul>";
+        echo "<li>id : " . $this->getId() . "</li>";
+        echo "<li>code : " . $this->getName() . "</li>";
+        echo "<li>lastpassFolder : " . $this->getLastpassFolder() . "</li>";
+        echo "<li>lien mocks up : " . $this->getLinkMockUps() . "</li>";
+        echo "<li>serveur actif (bool) : " . $this->getManagedServer() . "</li>";
+        echo "<li>notes : " . $this->getNotes() . "</li>";
+        echo "<li>nom Host : " . $this->getHost()->getName() . "</li>";
+        echo "<li>nom Customer : " . $this->getCustomer()->getName() . "</li>";
+        echo "</ul>";
+    }
+}
