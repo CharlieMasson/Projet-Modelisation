@@ -6,7 +6,6 @@ use App\Traits\HasId;
 use App\Traits\HasName;
 use App\Traits\HasNotes;
 use App\Traits\HasCode;
-echo":D";
 
 
 class Customer implements AllInterface{
