@@ -2,11 +2,11 @@
 namespace App\Repository;
 use App\Classes\Customer;
 use App\Connection\Connection;
-echo(":D");
 
 class CustomerRepository
 {
 
+    //liste les clients
     public static function listCustomer(){
         $co = new Connection();
         echo '<table class="table table-striped table-bordered">';
@@ -39,6 +39,7 @@ class CustomerRepository
         echo'</table>';
     }
 
+    //permet d'insérer un client dans la bdd
     public static function insertCustomer(Customer $myCustomer): Customer{
         $co = new Connection();
         $co->connectionBDD();
@@ -48,6 +49,7 @@ class CustomerRepository
         return $myCustomer;
     }
 
+    //permet de sélectionner les données d'un client et de les insérer dans myCustomer
     public static function selectCustomer(Customer $myCustomer): Customer {
         $co = new Connection();
         $co->connectionBDD();
@@ -61,6 +63,7 @@ class CustomerRepository
         return $myCustomer;
     }
 
+    //permet de modifier les données du client mit en paramètre
     public static function updateCustomer(Customer $myCustomer){
         $co = new Connection();
         $co->connectionBDD();
@@ -69,6 +72,17 @@ class CustomerRepository
         $co->deconnectionBDD();
     }
 
+    //permet d'initialiser l'array utilisé pour deleteCustomer
+    public static function initializeArray(): array{
+        $myArray = array(
+            'isSuccess' => 1,
+            'projectError' => '',
+            'contactError' => '',
+        );
+        return $myArray;
+    }
+
+    //permet de supprimer un utilisateur, sauf si celui-ci est utilisé dans une autre table
     public static function deleteCustomer(int $id): array{
 
         $myArray = array(
@@ -80,8 +94,9 @@ class CustomerRepository
 
         $co = new Connection();
         $co->connectionBDD();
-        $statement = $co->prepare("SELECT * FROM project WHERE customer_id = ?");
-        $count = rowCount($statement->execute(array($id)));
+        $statement = $co->prepare("SELECT * FROM project WHERE customer_id = ?");  
+        $statement->execute(array($id));
+        $count = $statement->fetchColumn();
 
         if($count>0){
             $myArray['projectError'] = 'Ce client est déjà lié à un ou des projet(s). Pour le supprimer, supprimez déjà le ou les projet(s) en question.';
@@ -89,7 +104,8 @@ class CustomerRepository
         }
 
         $statement = $co->prepare("SELECT * FROM contact WHERE customer_id = ?");
-        $count = rowCount($statement->execute(array($id)));
+        $statement->execute(array($id));
+        $count = $statement->fetchColumn();
 
         if($count>0){
             $myArray['contactError'] = 'Ce client est déjà lié à un ou des contact(s). Pour le supprimer, supprimez déjà le ou les contact(s) en question.';
@@ -97,12 +113,11 @@ class CustomerRepository
         }
 
         if($isSuccess){
-            //$statement = $co->prepare("DELETE customer WHERE id=?");
-            //$statement->execute(array($id));
-            //$myArray['isSuccess'] = 0;
+            $statement = $co->prepare("DELETE FROM customer WHERE id=?");
+            $statement->execute(array($id));
         }
         else{
-            $myArray['isSucess'] = 1;
+            $myArray['isSuccess'] = 1;
         }
 
         $co->deconnectionBDD();
