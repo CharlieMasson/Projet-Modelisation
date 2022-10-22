@@ -1,7 +1,6 @@
 <?php
 namespace App\Connection; 
 use PDO;
-echo":D";
 class Connection{
 
     protected $server="localhost";
