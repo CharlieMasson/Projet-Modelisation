@@ -2,7 +2,6 @@
 namespace App\Validators;
 use App\Classes\Customer;
 use App\Validators\Validator;
-echo ":D";
 
 class CustomerValidator extends Validator{
 
@@ -20,7 +19,8 @@ class CustomerValidator extends Validator{
         return $myArray;
     }
 
-    public static function validateCustomer(Customer $myCustomer): array{ //retourne un array qui contient dans l'ordre: 0/1, erreur code, erreur name, erreur notes
+    //retourne un array qui contient dans l'ordre: 0/1, erreur code, erreur name, erreur notes
+    public static function validateCustomer(Customer $myCustomer): array{
         
         $myArray = array(
             'isSuccess' => 0,
