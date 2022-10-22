@@ -29,6 +29,7 @@ use App\Repository\CustomerRepository;
         <div class="container">
           <h1><strong>Liste des Clients</strong></h1>
           <?php
+          //fonction pour lister directement les clients
           CustomerRepository::listCustomer();
           ?>
         </div>

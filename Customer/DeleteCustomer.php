@@ -15,20 +15,11 @@
         header("Location: Customer.php");
     }
 
-    $myArray = array(
-        'isSuccess' => 1,
-        'projectError' => 'ksdjqsdqds',
-        'contactError' => '',
-    );
+    $myArray = CustomerRepository::initializeArray();
+    $myCustomer = new Customer($id, "", "", "");
+    $myCustomer = CustomerRepository::selectCustomer($myCustomer);
 
-    if(!empty($_POST['submit'])) {
-        $co = new Connection();
-        $co->connectionBDD();
-        $statement = $co->prepare("SELECT * FROM project WHERE customer_id = ?");
-        $statement->execute(array($id));
-        $count = rowCount($statement);
-        var_dump($statement);
-        var_dump($count);
+    if(!empty($_POST)) {
         //si POST n'est pas vide on essaye de supprimer customer avec deleteCustomer. Cette fonction peut retourner
         //une erreur si le customer en question est utilisé dans d'autres tables. Les erreurs sont gérés plus bas.
         $myArray = CustomerRepository::deleteCustomer($id);
@@ -63,21 +54,26 @@
                 <h1><strong> Supression d'un Client </strong></h1>
                 <br>
                 <form class="form" role="form" method="post">
+                    <input type="hidden" name="id" value="<?php echo $id ?>">
                     <br>
                     <?php
 
                     if (empty($_POST)){
+                        //si post est vide alors le premier message est affiché
 
-                        echo "<p> Voulez-Vous vraiment supprimer le client" . $id . " ? Cette action est définitive. </p>";
+                        echo "<p> Voulez-Vous vraiment supprimer le client " . $myCustomer->getName() . " ? Cette action est définitive. </p>";
                         echo "<div class='form-actions'>";
-                        echo "<button name='submit' type='submit' class='btn btn-danger'> Supprimer </button> <a class='btn btn-secondary btnAnnuler' href='Customer.php'> Annuler </a>";
+                        echo "<button type='submit' class='btn btn-danger'> Supprimer </button> <a class='btn btn-secondary btnAnnuler' href='Customer.php'> Annuler </a>";
                         echo "</div>";
 
                     }
                     else{
+                        //en fonction de si l'utilisateur est utilisé dans d'autre table ou non il sera soit supprimé avec succès (isSuccess = 0)
+                        //ou la page retournera une ou des erreurs à partir de myArray
 
                         if ($myArray['isSuccess'] == 0){
 
+                            echo "<br>";
                             echo "Client supprimé avec succès.";
                             echo "<a class='btn btn-warning' href='Customer.php'> Retour </a>";
 
@@ -86,11 +82,14 @@
                         else{
 
                             echo"Erreur(s):";
+                            //liste toutes les variables de myArray sauf celles ayant pour clé isSuccess
                             foreach($myArray as $key=>$value){
                                 if ($key != 'isSuccess'){
+                                    echo "<br>";
                                     echo $myArray[$key];
                                 }
                             }
+                            echo "<br>";
                             echo "<a class='btn btn-warning' href='Customer.php'> Retour </a>";
 
                         }

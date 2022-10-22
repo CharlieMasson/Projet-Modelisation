@@ -79,7 +79,7 @@
                     <div class="form-actions">
 
                         <button type="submit" class="btn btn-success"><span class="bi-pencil"></span> Ajouter</button>
-                        <button class="btn btn-secondary" href="Customer.php"> Annuler </button>
+                        <a class="btn btn-secondary" href="Customer.php"> Annuler </a>
                         
                     </div>
                 </form>
