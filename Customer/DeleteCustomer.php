@@ -61,7 +61,7 @@
                     if (empty($_POST)){
                         //si post est vide alors le premier message est affiché
 
-                        echo "<p> Voulez-Vous vraiment supprimer le client " . $myCustomer->getName() . " ? Cette action est définitive. </p>";
+                        echo "<p> Voulez-vous vraiment supprimer le client " . $myCustomer->getName() . "? Cette action est définitive. </p>";
                         echo "<div class='form-actions'>";
                         echo "<button type='submit' class='btn btn-danger'> Supprimer </button> <a class='btn btn-secondary btnAnnuler' href='Customer.php'> Annuler </a>";
                         echo "</div>";
