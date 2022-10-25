@@ -1,0 +1,15 @@
+{
+    "name": "charl/htdocs",
+    "description": "Gestion de projets MentalWorks",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Masson Charlie"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "respect/validation": "^2.2",
+        "cocur/slugify": "^4.2"
+    }
+}
