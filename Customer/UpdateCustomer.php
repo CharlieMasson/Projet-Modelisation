@@ -1,5 +1,7 @@
 <?php
     require '../src/Autoloader.php';
+    require '../vendor/autoload.php';
+
     use App\Connection\Connection;
     use App\Repository\CustomerRepository;
     use App\Validators\CustomerValidator;
@@ -22,7 +24,7 @@
     if(!empty($_POST)) {
 
         //myCustomer reçoit les données du formulaire
-        $myCustomer->setCode(CustomerValidator::trimData($_POST['code']));
+        $myCustomer->setCode(CustomerValidator::slugifyData($_POST['code']));
         $myCustomer->setName(CustomerValidator::trimData($_POST['name']));
         $myCustomer->setNotes(CustomerValidator::trimData($_POST['notes']));
 

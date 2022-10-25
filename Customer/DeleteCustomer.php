@@ -1,10 +1,11 @@
 <?php
     require '../src/Autoloader.php';
+    require '../vendor/autoload.php';
+    
     use App\Connection\Connection;
     use App\Repository\CustomerRepository;
     use App\Validators\CustomerValidator;
     use App\Classes\Customer;
-
     
     //récupération de l'id en get, si il n'y en a pas l'utilisateur est redirigé
     if(!empty($_GET['id']))
@@ -61,7 +62,7 @@
                     if (empty($_POST)){
                         //si post est vide alors le premier message est affiché
 
-                        echo "<p> Voulez-vous vraiment supprimer le client " . $myCustomer->getName() . "? Cette action est définitive. </p>";
+                        echo "<p> Voulez-Vous vraiment supprimer le client " . $myCustomer->getName() . " ? Cette action est définitive. </p>";
                         echo "<div class='form-actions'>";
                         echo "<button type='submit' class='btn btn-danger'> Supprimer </button> <a class='btn btn-secondary btnAnnuler' href='Customer.php'> Annuler </a>";
                         echo "</div>";

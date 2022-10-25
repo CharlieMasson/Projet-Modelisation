@@ -1,6 +1,8 @@
 <?php
 
 require '../src/Autoloader.php';
+require '../vendor/autoload.php';
+
 use App\Connection\Connection;
 use App\Repository\CustomerRepository;
 
