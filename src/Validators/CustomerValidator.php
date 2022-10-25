@@ -1,14 +1,10 @@
 <?php
 namespace App\Validators;
+
 use App\Classes\Customer;
 use App\Validators\Validator;
 
 class CustomerValidator extends Validator{
-
-    private int $id;
-    private string $code; 
-    private string $name;
-    private string $notes;
 
     public static function initializeArray(): array{
         $myArray = array(
