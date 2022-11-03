@@ -3,11 +3,23 @@ namespace App\Classes;
 
 use Host;
 use Customer;
+use App\Interfaces\AllInterface;
+use App\Traits\HasId;
+use App\Traits\HasName;
+use App\Traits\HasNotes;
+use App\Traits\HasCode;
 
-class Project
+
+
+
+class Project implements AllInterface
 {
     use HasId;
     use HasName;
+    use HasNotes;
+    use HasCode;
+
+
 
     private int $id;
     private string $name;
@@ -31,7 +43,14 @@ class Project
         $this->host = $host;
         $this->customer = $customer;
     }
-
+    public function getName(): string
+    {
+        return $this->name;
+    }
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
     public function getCode(): string
     {
         return $this->code;
@@ -45,9 +64,9 @@ class Project
     {
         return $this->lastpassFolder;
     }
-    public function setLastpassFolder(string $lastpassFolder): void
+    public function setLastPassFolder(string $lastPassFolder): void
     {
-        $this->lastpassFolder = $lastpassFolder;
+        $this->lastpassFolder = $lastPassFolder;
     }
 
     public function getLinkMockUps(): string
