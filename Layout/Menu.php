@@ -12,6 +12,7 @@
             <li><a class="menu__item" href="../Customer/Customer.php"><i class="fas fa-user-circle"></i> Clients</a></li>
             <li><a class="menu__item" href="../Customer/InsertCustomer.php"><i class="fas fa-user-circle"></i> Ajouter un Client</a></li>
             <li><a class="menu__item" href="../Host/Host.php"><i class="fas fa-check-square"></i> Hebergeurs</a></li>
+            <li><a class="menu__item" href="../Host/InsertHost.php"><i class="fas fa-check-square"></i> Ajouter un Hébergeur</a></li>
         </ul>
     </div>
   </div>
