@@ -119,7 +119,7 @@ class ProjectRepository
         $count = $statement->fetchColumn();
 
         if ($count > 0) {
-            $myArray['projectError'] = 'Ce projet est déjà lié à un ou des environnement(s). Pour le supprimer, supprimez déjà le ou les projet(s) en question.';
+            $myArray['projectError'] = 'Ce projet est déjà lié à un ou des environnement(s). Pour le supprimer, supprimez déjà le ou les environnement(s) en question.';
             $isSuccess = false;
         }
         if ($isSuccess) {
