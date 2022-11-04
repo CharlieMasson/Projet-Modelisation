@@ -24,7 +24,7 @@
     if(!empty($_POST)) {
 
         //myCustomer reçoit les données du formulaire
-        $myHost->setCode(HostValidator::trimData($_POST['code']));
+        $myHost->setCode(HostValidator::sligifyData($_POST['code']));
         $myHost->setName(HostValidator::trimData($_POST['name']));
         $myHost->setNotes(HostValidator::trimData($_POST['notes']));
 
