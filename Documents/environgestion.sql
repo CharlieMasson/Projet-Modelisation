@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 09 oct. 2022 à 14:06
--- Version du serveur : 10.4.24-MariaDB
--- Version de PHP : 8.1.6
+-- Généré le : ven. 04 nov. 2022 à 14:17
+-- Version du serveur : 10.4.25-MariaDB
+-- Version de PHP : 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -125,14 +125,14 @@ CREATE TABLE `host` (
   `id` int(11) NOT NULL,
   `code` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `note` varchar(1000) DEFAULT NULL
+  `notes` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `host`
 --
 
-INSERT INTO `host` (`id`, `code`, `name`, `note`) VALUES
+INSERT INTO `host` (`id`, `code`, `name`, `notes`) VALUES
 (1, 'bonjour', 'jeremie', 'bonjour'),
 (2, 'bonjour', 'alex', 'bonjour'),
 (3, 'au-revoir', 'gabriel', 'bonjour'),
