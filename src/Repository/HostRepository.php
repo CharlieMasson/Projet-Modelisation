@@ -99,7 +99,7 @@ class HostRepository
         $count = $statement->fetchColumn();
 
         if($count>0){
-            $myArray['projectError'] = 'Ce client est déjà lié à un ou des projet(s). Pour le supprimer, supprimez déjà le ou les projet(s) en question.';
+            $myArray['projectError'] = 'Cet hébergeur est déjà lié à un ou des projet(s). Pour le supprimer, supprimez déjà le ou les projet(s) en question.';
             $isSuccess = false;
         }
 
@@ -108,7 +108,7 @@ class HostRepository
         $count = $statement->fetchColumn();
 
         if($count>0){
-            $myArray['contactError'] = 'Ce client est déjà lié à un ou des contact(s). Pour le supprimer, supprimez déjà le ou les contact(s) en question.';
+            $myArray['contactError'] = 'Cet hébergeur est déjà lié à un ou des contact(s). Pour le supprimer, supprimez déjà le ou les contact(s) en question.';
             $isSuccess = false;
         }
 
