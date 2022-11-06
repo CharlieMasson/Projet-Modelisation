@@ -28,6 +28,8 @@ $myArray = ProjectValidator::initializeArray();
 
 if(!empty($_POST)) {
 
+    $myHost = new Host($_POST['host'],"","","");
+    $myCustomer = new Customer($_POST['customer'],"","","");
     //myCustomer reçoit les données du formulaire
     $myProject->setName(ProjectValidator::trimData($_POST['name']));
     $myProject->setCode(ProjectValidator::slugifyData($_POST['code']));
@@ -35,8 +37,8 @@ if(!empty($_POST)) {
     $myProject->setLinkMockUps(ProjectValidator::trimData($_POST['linkMockUps']));
     $myProject->setManagedServer(ProjectValidator::slugifyData($_POST['managedServer']));
     $myProject->setNote(ProjectValidator::trimData($_POST['notes']));
-    $myProject->setHost(ProjectValidator::trimData($_POST['hostId']));
-    $myProject->setCustomer(ProjectValidator::trimData($_POST['customerId']));
+    $myProject->setHost($myHost);
+    $myProject->setCustomer($myCustomer);
 
     //la fonction validatesCustomer est utilisé. Cette fonction retourne un array listant les possibles
     //erreurs retournés des données du formulaire
@@ -69,7 +71,7 @@ else{
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <script src="JS/main.js"></script>
-    <link rel="stylesheet" href="../src/CSS/Style.css">
+    <link rel="stylesheet" href="../CSS/Style.css">
 </head>
 
 <body>

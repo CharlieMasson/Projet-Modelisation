@@ -21,14 +21,13 @@ $myArray = ProjectValidator::initializeArray();
 
 if(!empty($_POST)) {
     $myHost = new Host($_POST['host'],"","","");
-    var_dump($_POST['customer']);
     $myCustomer = new Customer($_POST['customer'],"","","");
     //myCustomer reçoit les données du formulaire
     $myProject->setName(ProjectValidator::trimData($_POST['name']));
     $myProject->setCode(ProjectValidator::slugifyData($_POST['code']));
     $myProject->setLastPassFolder(ProjectValidator::trimData($_POST['lastPassFolder']));
     $myProject->setLinkMockUps(ProjectValidator::trimData($_POST['linkMockUps']));
-    $myProject->setManagedServer(ProjectValidator::slugifyData($_POST['managedServer']));
+    $myProject->setManagedServer(ProjectValidator::trimData($_POST['managedServer']));
     $myProject->setNote(ProjectValidator::trimData($_POST['notes']));
     $myProject->setHost($myHost);
     $myProject->setCustomer($myCustomer);
@@ -61,7 +60,7 @@ if(!empty($_POST)) {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <script src="JS/main.js"></script>
-    <link rel="stylesheet" href="../src/CSS/Style.css">
+    <link rel="stylesheet" href="../CSS/Style.css">
 </head>
 
 <body>
@@ -100,8 +99,11 @@ if(!empty($_POST)) {
             </div>
             <br>
             <div>
-                <label class="form-label" for="managedServer">Serveur géré :</label>
-                <input type="text " class="form-control" id="managedServer" name="managedServer" placeholder="Insérer un managed server pour le projet" value="<?php echo $myProject->getManagedServer();?>">
+                <label class="form-label" for="managedServer">Le serveur est-il géré?</label>
+                <select class="form-control" id="managedServer" name="managedServer" placeholder="Insérer un managed server pour le projet">
+                    <option value="1"> Oui </option>
+                    <option value="2"> Non </option>
+                </select>
                 <span class="help-inline"><?php echo $myArray['managedServerError'];?></span>
             </div>
             <br>
