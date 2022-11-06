@@ -39,6 +39,24 @@ class CustomerRepository
         echo'</table>';
     }
 
+
+    public static function createdCustomer(){
+        $co = new Connection();
+        $co->connectionBDD();
+        $statement = $co->query('SELECT id, name FROM customer ORDER BY id ASC');
+        echo '<label class="form-label">Client: </label>';
+        echo '<select name="customer">';
+        while($item = $statement->fetch()) {
+
+
+            echo ' <option value = '. $item['id'].'>'. $item['name'] .'</option>';
+
+
+        }
+        $co->deconnectionBDD();
+        echo '</select>';
+    }
+
     //permet d'insérer un client dans la bdd
     public static function insertCustomer(Customer $myCustomer): Customer{
         $co = new Connection();

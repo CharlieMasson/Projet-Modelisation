@@ -2,7 +2,8 @@
 namespace App\Repository;
 use App\Classes\Project;
 use App\Connection\Connection;
-
+use App\Classes\Customer;
+use  App\Classes\Host;
 class ProjectRepository
 {
 
@@ -26,7 +27,7 @@ class ProjectRepository
         echo '</thead>';
         echo '<tbody>';
         $co->connectionBDD();
-        $statement = $co->query('SELECT id, name, code, lastpass_folder, link_mock_ups, managed_server, note, host_id, customer_id  FROM project ORDER BY id ASC');
+        $statement = $co->query('SELECT id, name, code, lastpass_folder, link_mock_ups, managed_server, note, host.name, customer.name  FROM project,host,customer ORDER BY id ASC');
         while ($item = $statement->fetch()) {
             echo '<tr>';
             echo '<td>' . $item['id'] . '</td>';
@@ -36,8 +37,8 @@ class ProjectRepository
             echo '<td>' . $item['link_mock_ups'] . '</td>';
             echo '<td>' . $item['managed_server'] . '</td>';
             echo '<td>' . $item['note'] . '</td>';
-            echo '<td>' . $item['host_id'] . '</td>';
-            echo '<td>' . $item['customer_id'] . '</td>';
+            echo '<td>' . $item['host.name'] . '</td>';
+            echo '<td>' . $item['customer.name'] . '</td>';
             echo '<td>';
             echo '<a class="btn btn-primary" href="UpdateProject.php?id=' . $item['id'] . '">Modifier</a>';
             echo '<a class="btn btn-primary" href="DeleteProject.php?id=' . $item['id'] . '">Supprimer</a>';
@@ -55,27 +56,31 @@ class ProjectRepository
         $co = new Connection();
         $co->connectionBDD();
         $statement = $co->prepare("INSERT INTO project (name, code, lastpass_folder, link_mock_ups, managed_server, note, host_id, customer_id) values(?, ?, ?, ?, ?, ?, ?, ?)");
-        $statement->execute(array($myProject->getName(), $myProject->getCode(), $myProject->getLastPassFolder(), $myProject->getLinkMockUps(), $myProject->getManagedServer(),  $myProject->getNote(), $myProject->getHostId(), $myProject->getCustomerId()));
+        $statement->execute(array($myProject->getName(), $myProject->getCode(), $myProject->getLastPassFolder(), $myProject->getLinkMockUps(), $myProject->getManagedServer(),  $myProject->getNote(), $myProject->getHost()->getId() , $myProject->getCustomer()->getId()));
         $co->deconnection();
         return $myProject;
     }
 
     //permet de sélectionner les données d'un client et de les insérer dans myProject
-    public static function selectProject(Project $myProject): Project
+    public static function selectProject(Project $myProject,): Project
     {
         $co = new Connection();
         $co->connectionBDD();
         $statement = $co->prepare("SELECT name, code, lastpass_folder, link_mock_ups, managed_server, note, host_id, customer_id from project WHERE id = ?");
         $statement->execute(array($myProject->getId()));
         $item = $statement->fetch();
+        $myCustomer = new Customer ($myProject['customer_id'], "", "", "");
+        $myHost = new Host ($myProject['host_id'], "","","");
+        HostRepository::selectHost($myHost);
+        customerRepository::selectCustomer($myCustomer);
         $myProject->setName($item['name']);
         $myProject->setCode($item['code']);
         $myProject->setLastPassFolder($item['lastpass_folder']);
         $myProject->setLinkMockUps($item['link_mock_ups']);
         $myProject->setManagedServer($item['managed_server']);
         $myProject->setNote($item['note']);
-        $myProject->setHostId($item['host_id']);
-        $myProject->setCustomerId($item['customer_id']);
+        $myProject->setHost($myCustomer['customer_id']);
+        $myProject->setCustomer($myHost['host_id']);
         $co->deconnectionBDD();
         return $myProject;
     }
@@ -86,7 +91,7 @@ class ProjectRepository
         $co = new Connection();
         $co->connectionBDD();
         $statement = $co->prepare("UPDATE project  set name = ?, code = ?, lastpass_folder = ?, link_mock_ups = ?, managed_server = ?, note = ?, host_id = ?, customer_id = ? WHERE id = ?");
-        $statement->execute(array($myProject->getName(), $myProject->getCode(), $myProject->getLastPassFolder(), $myProject->getLinkMockUps(), $myProject->getManagedServer(),  $myProject->getNote(), $myProject->getHostId(), $myProject->getCustomerId(), $myProject->getId()));
+        $statement->execute(array($myProject->getName(), $myProject->getCode(), $myProject->getLastPassFolder(), $myProject->getLinkMockUps(), $myProject->getManagedServer(),  $myProject->getNotes(), $myProject->getHost(), $myProject->getCustomer(), $myProject->getId()));
         $co->deconnectionBDD();
     }
 
@@ -119,7 +124,7 @@ class ProjectRepository
         $count = $statement->fetchColumn();
 
         if ($count > 0) {
-            $myArray['projectError'] = 'Ce projet est déjà lié à un ou des environnement(s). Pour le supprimer, supprimez déjà le ou les environnement(s) en question.';
+            $myArray['projectError'] = 'Ce projet est déjà lié à un ou des environnement(s). Pour le supprimer, supprimez déjà le ou les projet(s) en question.';
             $isSuccess = false;
         }
         if ($isSuccess) {

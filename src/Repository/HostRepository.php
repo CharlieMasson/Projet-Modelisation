@@ -2,6 +2,7 @@
 namespace App\Repository;
 use App\Classes\Host;
 use App\Connection\Connection;
+use App\Classes\Project;
 
 class HostRepository
 {
@@ -10,34 +11,54 @@ class HostRepository
     public static function listHost(){
         $co = new Connection();
         echo '<table class="table table-striped table-bordered">';
-            echo '<thead>';
-                echo '<tr>';
-                    echo'<th>id</th>';
-                    echo'<th>Code</th>';
-                    echo'<th>Name</th>';
-                    echo'<th>Notes</th>';
-                    echo'<th>Actions</th>';
-                echo'</tr>';
-            echo'</thead>';
-            echo'<tbody>';
-                $co->connectionBDD();
-                $statement = $co->query('SELECT id, code, name, notes FROM host ORDER BY id ASC');
-                while($item = $statement->fetch()) {
-                    echo '<tr>';
-                    echo '<td>'. $item['id'] . '</td>';
-                    echo '<td>'. $item['code'] . '</td>';
-                    echo '<td>'. $item['name'] . '</td>';
-                    echo '<td>'. $item['notes'] . '</td>';
-                    echo '<td>';
-                    echo '<a class="btn btn-primary" href="UpdateHost.php?id=' . $item['id'] . '">Modifier</a>';
-                    echo '<a class="btn btn-primary" href="DeleteHost.php?id=' . $item['id'] . '">Supprimer</a>';
-                    echo '</td>';
-                    echo '</tr>';
-                }
-                $co->deconnectionBDD();
-            echo'</tbody>';
+        echo '<thead>';
+        echo '<tr>';
+        echo'<th>id</th>';
+        echo'<th>Code</th>';
+        echo'<th>Name</th>';
+        echo'<th>Notes</th>';
+        echo'<th>Actions</th>';
+        echo'</tr>';
+        echo'</thead>';
+        echo'<tbody>';
+        $co->connectionBDD();
+        $statement = $co->query('SELECT id, code, name, notes FROM host ORDER BY id ASC');
+        while($item = $statement->fetch()) {
+            echo '<tr>';
+            echo '<td>'. $item['id'] . '</td>';
+            echo '<td>'. $item['code'] . '</td>';
+            echo '<td>'. $item['name'] . '</td>';
+            echo '<td>'. $item['notes'] . '</td>';
+            echo '<td>';
+            echo '<a class="btn btn-primary" href="UpdateHost.php?id=' . $item['id'] . '">Modifier</a>';
+            echo '<a class="btn btn-primary" href="DeleteHost.php?id=' . $item['id'] . '">Supprimer</a>';
+            echo '</td>';
+            echo '</tr>';
+        }
+        $co->deconnectionBDD();
+        echo'</tbody>';
         echo'</table>';
     }
+
+    public static function createdHost(){
+        $co = new Connection();
+        $co->connectionBDD();
+        $statement = $co->query('SELECT id, name FROM host ORDER BY id ASC');
+        echo '<label class="form-label">Hotes: </label>';
+        echo '<select name="host">';
+        while($item = $statement->fetch()) {
+
+
+                echo ' <option value = '. $item['id'].'>'. $item['name'] .'</option>';
+
+
+        }
+        $co->deconnectionBDD();
+        echo '</select>';
+        }
+
+
+
 
     //permet d'insérer un client dans la bdd
     public static function insertHost(Host $myHost): Host{
@@ -94,12 +115,12 @@ class HostRepository
 
         $co = new Connection();
         $co->connectionBDD();
-        $statement = $co->prepare("SELECT * FROM project WHERE host_id = ?");  
+        $statement = $co->prepare("SELECT * FROM project WHERE host_id = ?");
         $statement->execute(array($id));
         $count = $statement->fetchColumn();
 
         if($count>0){
-            $myArray['projectError'] = 'Cet hébergeur est déjà lié à un ou des projet(s). Pour le supprimer, supprimez déjà le ou les projet(s) en question.';
+            $myArray['projectError'] = 'Ce client est déjà lié à un ou des projet(s). Pour le supprimer, supprimez déjà le ou les projet(s) en question.';
             $isSuccess = false;
         }
 
@@ -108,7 +129,7 @@ class HostRepository
         $count = $statement->fetchColumn();
 
         if($count>0){
-            $myArray['contactError'] = 'Cet hébergeur est déjà lié à un ou des contact(s). Pour le supprimer, supprimez déjà le ou les contact(s) en question.';
+            $myArray['contactError'] = 'Ce client est déjà lié à un ou des contact(s). Pour le supprimer, supprimez déjà le ou les contact(s) en question.';
             $isSuccess = false;
         }
 
