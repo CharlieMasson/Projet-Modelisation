@@ -1,8 +1,8 @@
 <?php
 namespace App\Classes;
 
-use Host;
-use Customer;
+use App\Classes\Host;
+use App\Classes\Customer;
 use App\Interfaces\AllInterface;
 use App\Traits\HasId;
 use App\Traits\HasName;
