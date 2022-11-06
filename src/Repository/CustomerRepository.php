@@ -49,7 +49,7 @@ class CustomerRepository
         while($item = $statement->fetch()) {
 
 
-            echo ' <option value = '. $item['id'].'>'. $item['name'] .'</option>';
+            echo ' <option value = '. $item['id'].'>'. $item['id'] . ' - '. $item['name'] .'</option>';
 
 
         }

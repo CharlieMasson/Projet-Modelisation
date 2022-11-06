@@ -15,19 +15,19 @@ class ProjectRepository
         echo '<thead>';
         echo '<tr>';
         echo '<th>Id</th>';
-        echo '<th>Name</th>';
+        echo '<th>Nom</th>';
         echo '<th>Code</th>';
-        echo '<th>Last Pass Folder</th>';
-        echo '<th>Link Mock Ups</th>';
-        echo '<th>Managed Server</th>';
-        echo '<th>Note</th>';
-        echo '<th>Host</th>';
-        echo '<th>Customer</th>';
+        echo '<th>Dernier dossier de passe</th>';
+        echo '<th>lien maquettes</th>';
+        echo '<th>Le serveur est-il géré?</th>';
+        echo '<th>Notes</th>';
+        echo '<th>Hôte</th>';
+        echo '<th>Client</th>';
         echo '</tr>';
         echo '</thead>';
         echo '<tbody>';
         $co->connectionBDD();
-        $statement = $co->query('SELECT id, name, code, lastpass_folder, link_mock_ups, managed_server, note, host.name, customer.name  FROM project,host,customer ORDER BY id ASC');
+        $statement = $co->query('SELECT project.id, project.name, project.code, lastpass_folder, link_mock_ups, managed_server, project.notes, host.name as host_name, host.id as host_id, customer.name as customer_name, customer.id as customer_id  FROM project INNER JOIN customer on project.customer_id = customer.id JOIN host on project.host_id = host.id ORDER BY project.id ASC');
         while ($item = $statement->fetch()) {
             echo '<tr>';
             echo '<td>' . $item['id'] . '</td>';
@@ -35,10 +35,15 @@ class ProjectRepository
             echo '<td>' . $item['code'] . '</td>';
             echo '<td>' . $item['lastpass_folder'] . '</td>';
             echo '<td>' . $item['link_mock_ups'] . '</td>';
-            echo '<td>' . $item['managed_server'] . '</td>';
-            echo '<td>' . $item['note'] . '</td>';
-            echo '<td>' . $item['host.name'] . '</td>';
-            echo '<td>' . $item['customer.name'] . '</td>';
+            if ($item['managed_server'] == 0){
+                echo '<td> Non </td>';
+            }
+            else{
+                echo '<td> Oui </td>';
+            }
+            echo '<td>' . $item['notes'] . '</td>';
+            echo '<td>' . $item['host_id'] . ' - ' . $item['host_name'] . '</td>';
+            echo '<td>' . $item['customer_id'] . ' - ' . $item['customer_name'] . '</td>';
             echo '<td>';
             echo '<a class="btn btn-primary" href="UpdateProject.php?id=' . $item['id'] . '">Modifier</a>';
             echo '<a class="btn btn-primary" href="DeleteProject.php?id=' . $item['id'] . '">Supprimer</a>';
@@ -55,22 +60,22 @@ class ProjectRepository
     {
         $co = new Connection();
         $co->connectionBDD();
-        $statement = $co->prepare("INSERT INTO project (name, code, lastpass_folder, link_mock_ups, managed_server, note, host_id, customer_id) values(?, ?, ?, ?, ?, ?, ?, ?)");
-        $statement->execute(array($myProject->getName(), $myProject->getCode(), $myProject->getLastPassFolder(), $myProject->getLinkMockUps(), $myProject->getManagedServer(),  $myProject->getNote(), $myProject->getHost()->getId() , $myProject->getCustomer()->getId()));
+        $statement = $co->prepare("INSERT INTO project (name, code, lastpass_folder, link_mock_ups, managed_server, notes, host_id, customer_id) values(?, ?, ?, ?, ?, ?, ?, ?)");
+        $statement->execute(array($myProject->getName(), $myProject->getCode(), $myProject->getLastPassFolder(), $myProject->getLinkMockUps(), $myProject->getManagedServer(),  $myProject->getNotes(), $myProject->getHost()->getId() , $myProject->getCustomer()->getId()));
         $co->deconnection();
         return $myProject;
     }
 
     //permet de sélectionner les données d'un client et de les insérer dans myProject
-    public static function selectProject(Project $myProject,): Project
+    public static function selectProject(Project $myProject): Project
     {
         $co = new Connection();
         $co->connectionBDD();
-        $statement = $co->prepare("SELECT name, code, lastpass_folder, link_mock_ups, managed_server, note, host_id, customer_id from project WHERE id = ?");
+        $statement = $co->prepare("SELECT name, code, lastpass_folder, link_mock_ups, managed_server, notes, host_id, customer_id from project WHERE id = ?");
         $statement->execute(array($myProject->getId()));
         $item = $statement->fetch();
-        $myCustomer = new Customer ($myProject['customer_id'], "", "", "");
-        $myHost = new Host ($myProject['host_id'], "","","");
+        $myCustomer = new Customer ($item['customer_id'], "", "", "");
+        $myHost = new Host ($item['host_id'], "","","");
         HostRepository::selectHost($myHost);
         customerRepository::selectCustomer($myCustomer);
         $myProject->setName($item['name']);
@@ -78,9 +83,9 @@ class ProjectRepository
         $myProject->setLastPassFolder($item['lastpass_folder']);
         $myProject->setLinkMockUps($item['link_mock_ups']);
         $myProject->setManagedServer($item['managed_server']);
-        $myProject->setNote($item['note']);
-        $myProject->setHost($myCustomer['customer_id']);
-        $myProject->setCustomer($myHost['host_id']);
+        $myProject->setNote($item['notes']);
+        $myProject->setHost($myHost);
+        $myProject->setCustomer($myCustomer);
         $co->deconnectionBDD();
         return $myProject;
     }
@@ -90,8 +95,8 @@ class ProjectRepository
     {
         $co = new Connection();
         $co->connectionBDD();
-        $statement = $co->prepare("UPDATE project  set name = ?, code = ?, lastpass_folder = ?, link_mock_ups = ?, managed_server = ?, note = ?, host_id = ?, customer_id = ? WHERE id = ?");
-        $statement->execute(array($myProject->getName(), $myProject->getCode(), $myProject->getLastPassFolder(), $myProject->getLinkMockUps(), $myProject->getManagedServer(),  $myProject->getNotes(), $myProject->getHost(), $myProject->getCustomer(), $myProject->getId()));
+        $statement = $co->prepare("UPDATE project  set name = ?, code = ?, lastpass_folder = ?, link_mock_ups = ?, managed_server = ?, notes = ?, host_id = ?, customer_id = ? WHERE id = ?");
+        $statement->execute(array($myProject->getName(), $myProject->getCode(), $myProject->getLastPassFolder(), $myProject->getLinkMockUps(), $myProject->getManagedServer(),  $myProject->getNotes(), $myProject->getHost()->getId(), $myProject->getCustomer()->getId(), $myProject->getId()));
         $co->deconnectionBDD();
     }
 

@@ -49,15 +49,13 @@ class HostRepository
         while($item = $statement->fetch()) {
 
 
-                echo ' <option value = '. $item['id'].'>'. $item['name'] .'</option>';
+                echo ' <option value = '. $item['id'].'>' . $item['id'] . ' - '. $item['name'] .'</option>';
 
 
         }
         $co->deconnectionBDD();
         echo '</select>';
         }
-
-
 
 
     //permet d'insérer un client dans la bdd
