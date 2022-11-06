@@ -80,15 +80,15 @@ class ProjectValidator extends Validator{
             $isSuccess = false;
         }
 
-        if (Validator::checkLength1000($myProject->getNote())){
+        if (Validator::checkLength1000($myProject->getNotes())){
             $myArray['notesError'] = 'Ce champ ne peut pas contenir plus de 1000 caractères.';
             $isSuccess = false;
         }
-        if (Validator::checkLength1000($myProject->getHostId())){
+        if (Validator::checkLength1000($myProject->getHost())){
             $myArray['hostIdError'] = 'Ce champ ne peut pas contenir plus de 1000 caractères.';
             $isSuccess = false;
         }
-        if (Validator::checkLength1000($myProject->getCustomerId())){
+        if (Validator::checkLength1000($myProject->getCustomer())){
             $myArray['customerIdError'] = 'Ce champ ne peut pas contenir plus de 1000 caractères.';
             $isSuccess = false;
         }
