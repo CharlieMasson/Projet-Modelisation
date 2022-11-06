@@ -15,7 +15,7 @@ use App\Repository\ProjectRepository;
 
     <meta charset="utf-8">
     <title>Gestion de Projets MentalWorks</title>
-    <link rel="stylesheet" href="../CSS/Style.css" type="text/css">
+    <link rel="stylesheet" href="../src/CSS/Style.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"

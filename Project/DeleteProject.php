@@ -6,6 +6,8 @@ use App\Connection\Connection;
 use App\Repository\ProjectRepository;
 use App\Validators\ProjectValidator;
 use App\Classes\Project;
+use App\Classes\Host;
+use App\Classes\Customer;
 
 //récupération de l'id en get, si il n'y en a pas l'utilisateur est redirigé
 if(!empty($_GET['id']))
@@ -15,9 +17,10 @@ if(!empty($_GET['id']))
 else{
     header("Location: Project.php");
 }
-
+$myCustomer = new Customer ( 0, "", "", "");
+$myHost = new Host (0, "","","");
 $myArray = ProjectRepository::initializeArray();
-$myProject = new Project($id, "", "", "", "", "","","","");
+$myProject = new Project($id, "", "", "", "", "","", $myHost, $myCustomer);
 $myProject = ProjectRepository::selectProject($myProject);
 
 if(!empty($_POST)) {
@@ -42,7 +45,7 @@ if(!empty($_POST)) {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <script src="JS/main.js"></script>
-    <link rel="stylesheet" href="../CSS/Style.css">
+    <link rel="stylesheet" href="../src/CSS/Style.css">
 </head>
 
 <body>

@@ -6,14 +6,23 @@ use App\Connection\Connection;
 use App\Repository\ProjectRepository;
 use App\Validators\ProjectValidator;
 use App\Classes\Project;
+use App\Classes\Host;
+use App\Classes\Customer;
+use App\Repository\HostRepository;
+use App\Repository\CustomerRepository;
 
-//initialisation de myCustomer
-$myProject = new Project(0,"","","", "", "", "", "","");
+
+$myCustomer = new Customer ( 0, "", "", "");
+$myHost = new Host (0, "","","");
+//initialisation de myProject
+$myProject = new Project(0,"","","", "", "", "", $myHost, $myCustomer);
 //initialisation de l'array utilisé pour retourner les erreurs
 $myArray = ProjectValidator::initializeArray();
 
 if(!empty($_POST)) {
-
+    $myHost = new Host($_POST['host'],"","","");
+    var_dump($_POST['customer']);
+    $myCustomer = new Customer($_POST['customer'],"","","");
     //myCustomer reçoit les données du formulaire
     $myProject->setName(ProjectValidator::trimData($_POST['name']));
     $myProject->setCode(ProjectValidator::slugifyData($_POST['code']));
@@ -21,8 +30,9 @@ if(!empty($_POST)) {
     $myProject->setLinkMockUps(ProjectValidator::trimData($_POST['linkMockUps']));
     $myProject->setManagedServer(ProjectValidator::slugifyData($_POST['managedServer']));
     $myProject->setNote(ProjectValidator::trimData($_POST['notes']));
-    $myProject->setHostId(ProjectValidator::trimData($_POST['hostId']));
-    $myProject->setCustomerId(ProjectValidator::trimData($_POST['customerId']));
+    $myProject->setHost($myHost);
+    $myProject->setCustomer($myCustomer);
+
 
     //la fonction static validateCustomer est utilisé. Cette fonction retourne un array listant les possibles
     //erreurs retournés des données du formulaire
@@ -51,7 +61,7 @@ if(!empty($_POST)) {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <script src="JS/main.js"></script>
-    <link rel="stylesheet" href="../CSS/Style.css">
+    <link rel="stylesheet" href="../src/CSS/Style.css">
 </head>
 
 <body>
@@ -78,19 +88,19 @@ if(!empty($_POST)) {
             </div>
             <br>
             <div>
-                <label class="form-label" for="lastPassFolder">last Pass Folder :</label>
+                <label class="form-label" for="lastPassFolder">dernier dossier de passe :</label>
                 <input type="text " class="form-control" id="lastPassFolder" name="lastPassFolder" placeholder="Insérer un last Pass Folder pour le projet" value="<?php echo $myProject->getLastPassFolder();?>">
                 <span class="help-inline"><?php echo $myArray['lastPassFolderError'];?></span>
             </div>
             <br>
             <div>
-                <label class="form-label" for="linkMockUps">link Mock Ups :</label>
+                <label class="form-label" for="linkMockUps">lien Maquettes :</label>
                 <input type="text " class="form-control" id="linkMockUps" name="linkMockUps" placeholder="Insérer un link Mock Ups pour le projet" value="<?php echo $myProject->getLinkMockUps();?>">
                 <span class="help-inline"><?php echo $myArray['linkMockUpsError'];?></span>
             </div>
             <br>
             <div>
-                <label class="form-label" for="managedServer">managed Server :</label>
+                <label class="form-label" for="managedServer">Serveur géré :</label>
                 <input type="text " class="form-control" id="managedServer" name="managedServer" placeholder="Insérer un managed server pour le projet" value="<?php echo $myProject->getManagedServer();?>">
                 <span class="help-inline"><?php echo $myArray['managedServerError'];?></span>
             </div>
@@ -102,13 +112,11 @@ if(!empty($_POST)) {
             </div>
             <br>
             <div>
-                <label class="form-label" for="hostId">Host Id :</label>
-                <textarea id="hostId" name="hostId" placeholder="Id de host pour un projet" rows="10" cols="173"><?php echo $myProject->getHostId();?></textarea>
+                <?php HostRepository::createdHost()?>
                 <span class="help-inline"><?php echo $myArray['hostIdError'];?></span>
             </div>
             <br> <div>
-                <label class="form-label" for="customerId">Customer Id :</label>
-                <textarea id="customerId" name="customerId" placeholder="Id de customer pour un projet" rows="10" cols="173"><?php echo $myProject->getCustomerId();?></textarea>
+                <?php CustomerRepository::createdCustomer()?>
                 <span class="help-inline"><?php echo $myArray['customerIdError'];?></span>
             </div>
             <div class="form-actions">
