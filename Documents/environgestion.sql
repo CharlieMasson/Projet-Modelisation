@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 06 nov. 2022 à 17:42
+-- Généré le : ven. 04 nov. 2022 à 14:17
 -- Version du serveur : 10.4.25-MariaDB
 -- Version de PHP : 8.1.10
 
@@ -133,7 +133,7 @@ CREATE TABLE `host` (
 --
 
 INSERT INTO `host` (`id`, `code`, `name`, `notes`) VALUES
-(1, 'bonjour-qdq', 'jeremies', 'bonjousr'),
+(1, 'bonjour', 'jeremie', 'bonjour'),
 (2, 'bonjour', 'alex', 'bonjour'),
 (3, 'au-revoir', 'gabriel', 'bonjour'),
 (4, 'au-revoir', 'charlie', 'bonjour'),
@@ -142,8 +142,7 @@ INSERT INTO `host` (`id`, `code`, `name`, `notes`) VALUES
 (7, 'rien', 'idasiak', 'rien'),
 (8, NULL, 'batiste', NULL),
 (9, 'lock', 'mera', 'bien'),
-(10, 'onze', 'dix', 'neuf'),
-(12, '1', '2', '3');
+(10, 'onze', 'dix', 'neuf');
 
 -- --------------------------------------------------------
 
@@ -158,7 +157,7 @@ CREATE TABLE `project` (
   `lastpass_folder` varchar(255) DEFAULT NULL,
   `link_mock_ups` varchar(255) DEFAULT NULL,
   `managed_server` tinyint(1) DEFAULT NULL,
-  `notes` text DEFAULT NULL,
+  `note` text DEFAULT NULL,
   `host_id` int(11) DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -167,7 +166,7 @@ CREATE TABLE `project` (
 -- Déchargement des données de la table `project`
 --
 
-INSERT INTO `project` (`id`, `name`, `code`, `lastpass_folder`, `link_mock_ups`, `managed_server`, `notes`, `host_id`, `customer_id`) VALUES
+INSERT INTO `project` (`id`, `name`, `code`, `lastpass_folder`, `link_mock_ups`, `managed_server`, `note`, `host_id`, `customer_id`) VALUES
 (1, 'valentin', '13454', 'connais pas mon mot de passe', 'link', 1, 'mrggggllllll', 1, 1),
 (2, '', '1345678', 'faudrais retenir t\'on mots de passe', 'link', 0, 'murloc', 2, 2),
 (3, 'jeremie', NULL, 'je connais mot mots de passe', 'link', 1, 'note', 3, 3),
@@ -177,11 +176,7 @@ INSERT INTO `project` (`id`, `name`, `code`, `lastpass_folder`, `link_mock_ups`,
 (7, 'iceheat', '8987545', 'lastpass_folder', 'link', 1, NULL, 7, 7),
 (8, 'ohhhhhhhhhhhhhhhhhh', 'ok', 'demain', 'link', 0, 'test', NULL, 8),
 (9, 'neuf', 'neuf', 'neuf', 'neuf', 1, 'neuf', 9, NULL),
-(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(11, 'a', 'b', 'c', 'd', 1, 'edqd', 1, 1),
-(12, 'a', 'b', 'c', 'd', 1, 'dqqz', 1, 1),
-(13, 'Michou', 'a1', 'wx', 'd', 1, 'sdq', 1, 1),
-(14, 'Michou', 'a1', 'wx', 'd', 1, 'sdq', 1, 9);
+(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Index pour les tables déchargées
@@ -248,13 +243,13 @@ ALTER TABLE `environment`
 -- AUTO_INCREMENT pour la table `host`
 --
 ALTER TABLE `host`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Contraintes pour les tables déchargées
