@@ -166,7 +166,7 @@ CREATE TABLE `project` (
 -- Déchargement des données de la table `project`
 --
 
-INSERT INTO `project` (`id`, `name`, `code`, `lastpass_folder`, `link_mock_ups`, `managed_server`, `note`, `host_id`, `customer_id`) VALUES
+INSERT INTO `project` (`id`, `name`, `code`, `lastpass_folder`, `link_mock_ups`, `managed_server`, `notes`, `host_id`, `customer_id`) VALUES
 (1, 'valentin', '13454', 'connais pas mon mot de passe', 'link', 1, 'mrggggllllll', 1, 1),
 (2, '', '1345678', 'faudrais retenir t\'on mots de passe', 'link', 0, 'murloc', 2, 2),
 (3, 'jeremie', NULL, 'je connais mot mots de passe', 'link', 1, 'note', 3, 3),
