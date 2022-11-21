@@ -42,13 +42,9 @@ CREATE TABLE `contact` (
 
 INSERT INTO `contact` (`id`, `email`, `phone_number`, `role`, `host_id`, `customer_id`) VALUES
 (1, 'email@email.fr', '125478', 'admin', 1, 1),
-(2, NULL, 'pas de mail', 'admin', 2, 2),
-(3, 'mail', NULL, 'pas de phone', 3, 3),
-(4, 'mail@gmail.com', '125831', NULL, 4, 4),
 (5, 'varchar', 'phone', 'role mineur', 5, 5),
 (6, 'six', 'six', 'six', 6, 6),
 (7, 'sept', 'sept', 'sept', 7, 7),
-(8, NULL, NULL, NULL, 8, 8),
 (9, 'neuf', 'destiny', 'gardien', 9, 9),
 (10, 'bonbon', 'gateau', 'patissier', 10, 10);
 
@@ -72,10 +68,6 @@ CREATE TABLE `customer` (
 INSERT INTO `customer` (`id`, `code`, `name`, `notes`) VALUES
 (1, 'bonjour', 'demain ', 'note'),
 (2, 'deux', 'trois', 'quatre'),
-(3, NULL, 'pas de code ', 'rien'),
-(4, 'pas de nom', NULL, 'alerte'),
-(5, 'fichier corrompu', 'pas de note', NULL),
-(6, NULL, NULL, NULL),
 (7, 'tout valeur null', 'pour la collone', 'six'),
 (8, 'huit', 'huitre', 'noel'),
 (9, 'demain', 'm\'appartient', 'vent salée'),
@@ -105,15 +97,14 @@ CREATE TABLE `environment` (
 
 INSERT INTO `environment` (`name`, `link`, `ip_adress`, `ssh_port`, `ssh_username`, `phpmyadmin_link`, `ip_restriction`, `project_id`, `id`) VALUES
 ('name1', 'link1', 'ip1', 1, 'ssh1', 'phpmyadmin1', 1, 1, 1),
-(NULL, 'link2', 'ip2', 2, 'ssh2', 'phpmyadmin2', 0, 2, 2),
-('name3', NULL, 'ip3', 3, 'ssh3', 'phpmyadmin3', 1, 3, 3),
-('name4', 'link4', NULL, 4, 'ssh4', 'phpmyadmin4', 0, 4, 4),
-('name5', 'link5', 'ip5', NULL, 'ssh5', 'phpmyadmin5', 1, 5, 5),
-('name6', 'link6', 'ip6', 6, NULL, 'phpmyadmin6', 0, 6, 6),
-('name7', 'link7', 'ip7', 7, 'ssh7', NULL, 1, 7, 7),
-('name8', 'link8', 'ip8', 8, 'ssh8', 'phpmyadmin8', NULL, 8, 8),
-('name9', 'link9', 'ip9', 9, 'ssh9', 'phpmyadmin9', 1, NULL, 9),
-(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 10);
+('name2', 'link2', 'ip2', 2, 'ssh2', 'phpmyadmin2', 0, 2, 2),
+('name3', 'link3', 'ip3', 3, 'ssh3', 'phpmyadmin3', 1, 3, 3),
+('name4', 'link4', 'ip4', 4, 'ssh4', 'phpmyadmin4', 0, 4, 4),
+('name5', 'link5', 'ip5', 5, 'ssh5', 'phpmyadmin5', 1, 5, 5),
+('name6', 'link6', 'ip6', 6, 'ssh6', 'phpmyadmin6', 0, 6, 6),
+('name7', 'link7', 'ip7', 7, 'ssh7', 'phpmyadmin7', 1, 7, 7),
+('name8', 'link8', 'ip8', 8, 'ssh8', 'phpmyadmin8', 2, 8, 8),
+('name9', 'link9', 'ip9', 9, 'ssh9', 'phpmyadmin9', 1, 4, 9),
 
 -- --------------------------------------------------------
 
@@ -140,7 +131,6 @@ INSERT INTO `host` (`id`, `code`, `name`, `notes`) VALUES
 (5, 'vide', 'louka', 'bonjour'),
 (6, 'rien', 'valentin', 'rien'),
 (7, 'rien', 'idasiak', 'rien'),
-(8, NULL, 'batiste', NULL),
 (9, 'lock', 'mera', 'bien'),
 (10, 'onze', 'dix', 'neuf');
 
@@ -169,14 +159,8 @@ CREATE TABLE `project` (
 INSERT INTO `project` (`id`, `name`, `code`, `lastpass_folder`, `link_mock_ups`, `managed_server`, `notes`, `host_id`, `customer_id`) VALUES
 (1, 'valentin', '13454', 'connais pas mon mot de passe', 'link', 1, 'mrggggllllll', 1, 1),
 (2, '', '1345678', 'faudrais retenir t\'on mots de passe', 'link', 0, 'murloc', 2, 2),
-(3, 'jeremie', NULL, 'je connais mot mots de passe', 'link', 1, 'note', 3, 3),
-(4, 'shakeel', '13265879', NULL, 'link', 0, 'note', 4, 4),
-(5, 'alex (fuzzy)', '1254897', 'il connais nos mots de passe', NULL, 1, 'note', 5, 6),
-(6, 'mera', '7777', 'tu ne passera pas', 'link', NULL, 'note', 6, 6),
-(7, 'iceheat', '8987545', 'lastpass_folder', 'link', 1, NULL, 7, 7),
-(8, 'ohhhhhhhhhhhhhhhhhh', 'ok', 'demain', 'link', 0, 'test', NULL, 8),
-(9, 'neuf', 'neuf', 'neuf', 'neuf', 1, 'neuf', 9, NULL),
-(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(7, 'iceheat', '8987545', 'lastpass_folder', 'link', 1, 'euh', 7, 7),
+(8, 'ohhhhhhhhhhhhhhhhhh', 'ok', 'demain', 'link', 0, 'test', 4, 8),
 
 --
 -- Index pour les tables déchargées
