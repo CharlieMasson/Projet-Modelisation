@@ -41,7 +41,7 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `email`, `phone_number`, `role`, `host_id`, `customer_id`) VALUES
-(1, 'email@email.fr', '125478', 'admin', 1, 1),
+(1, 'emailemail.fr', '125478', 'admin', 1, 1),
 (5, 'varchar', 'phone', 'role mineur', 5, 5),
 (6, 'six', 'six', 'six', 6, 6),
 (7, 'sept', 'sept', 'sept', 7, 7),
@@ -68,7 +68,7 @@ CREATE TABLE `customer` (
 INSERT INTO `customer` (`id`, `code`, `name`, `notes`) VALUES
 (1, 'bonjour', 'demain ', 'note'),
 (2, 'deux', 'trois', 'quatre'),
-(7, 'tout valeur null', 'pour la collone', 'six'),
+(7, 'tout-valeur-null', 'pour la collone', 'six'),
 (8, 'huit', 'huitre', 'noel'),
 (9, 'demain', 'm\'appartient', 'vent salée'),
 (10, 'extinction', 'des', 'feux');
@@ -158,7 +158,7 @@ CREATE TABLE `project` (
 
 INSERT INTO `project` (`id`, `name`, `code`, `lastpass_folder`, `link_mock_ups`, `managed_server`, `notes`, `host_id`, `customer_id`) VALUES
 (1, 'valentin', '13454', 'connais pas mon mot de passe', 'link', 1, 'mrggggllllll', 1, 1),
-(2, '', '1345678', 'faudrais retenir t\'on mots de passe', 'link', 0, 'murloc', 2, 2),
+(2, 'kmdffdj', '1345678', 'faudrais retenir t\'on mots de passe', 'link', 0, 'murloc', 2, 2),
 (7, 'iceheat', '8987545', 'lastpass_folder', 'link', 1, 'euh', 7, 7),
 (8, 'ohhhhhhhhhhhhhhhhhh', 'ok', 'demain', 'link', 0, 'test', 4, 8),
 
