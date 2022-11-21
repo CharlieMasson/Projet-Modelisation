@@ -147,7 +147,7 @@ CREATE TABLE `project` (
   `lastpass_folder` varchar(255) DEFAULT NULL,
   `link_mock_ups` varchar(255) DEFAULT NULL,
   `managed_server` tinyint(1) DEFAULT NULL,
-  `note` text DEFAULT NULL,
+  `notes` text DEFAULT NULL,
   `host_id` int(11) DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
