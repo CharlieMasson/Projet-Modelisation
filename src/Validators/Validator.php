@@ -38,6 +38,16 @@ abstract class Validator{
         return $data;
     }
 
+    //vérifie sur $data ne contient pas plus de 1 caractère
+    public static function checkLength1(string $data): bool{
+        if (!(v::stringType()->length(null, 1)->validate($data))){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     //vérifie sur $data ne contient pas plus de 250 caractères
     public static function checkLength255(string $data): bool{
         if (!(v::stringType()->length(null, 255)->validate($data))){

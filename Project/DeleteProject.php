@@ -10,7 +10,7 @@ use App\Classes\Host;
 use App\Classes\Customer;
 
 //récupération de l'id en get, si il n'y en a pas l'utilisateur est redirigé
-if(!empty($_GET['id']))
+if(isset($_GET['id']))
 {
     $id = ProjectValidator::trimData($_GET['id']);
 }
@@ -65,7 +65,7 @@ if(!empty($_POST)) {
             if (empty($_POST)){
                 //si post est vide alors le premier message est affiché
 
-                echo "<p> Voulez-Vous vraiment supprimer le Projet " . $myProject->getName() . " ? Cette action est définitive. </p>";
+                echo "<p> Voulez-vous vraiment supprimer le Projet " . $myProject->getName() . " ? Cette action est définitive. </p>";
                 echo "<div class='form-actions'>";
                 echo "<button type='submit' class='btn btn-danger'> Supprimer </button> <a class='btn btn-secondary btnAnnuler' href='Project.php'> Annuler </a>";
                 echo "</div>";
@@ -78,7 +78,7 @@ if(!empty($_POST)) {
                 if ($myArray['isSuccess'] == 0){
 
                     echo "<br>";
-                    echo "Project supprimé avec succès.";
+                    echo "Projet supprimé avec succès.";
                     echo "<a class='btn btn-warning' href='Project.php'> Retour </a>";
 
                 }

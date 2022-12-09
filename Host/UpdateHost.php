@@ -8,7 +8,7 @@
     use App\Classes\Host;
 
     //récupération de l'id en get, si il n'y en a pas l'utilisateur est redirigé
-    if(!empty($_GET['id']))
+    if(isset($_GET['id']))
     {
         $id = HostValidator::trimData($_GET['id']);
     }

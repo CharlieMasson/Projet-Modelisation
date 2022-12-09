@@ -12,7 +12,7 @@ use App\Repository\HostRepository;
 use App\Repository\CustomerRepository;
 
 //récupération de l'id en get, si il n'y en a pas l'utilisateur est redirigé
-if(!empty($_GET['id']))
+if(isset($_GET['id']))
 {
     $id = ProjectValidator::trimData($_GET['id']);
 }
