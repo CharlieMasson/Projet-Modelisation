@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 04 nov. 2022 à 14:17
+-- Généré le : ven. 09 déc. 2022 à 09:14
 -- Version du serveur : 10.4.25-MariaDB
 -- Version de PHP : 8.1.10
 
@@ -41,7 +41,7 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `email`, `phone_number`, `role`, `host_id`, `customer_id`) VALUES
-(1, 'emailemail.fr', '125478', 'admin', 1, 1),
+(1, 'email@email.fr', '125478', 'admin', 1, 1),
 (5, 'varchar', 'phone', 'role mineur', 5, 5),
 (6, 'six', 'six', 'six', 6, 6),
 (7, 'sept', 'sept', 'sept', 7, 7),
@@ -68,7 +68,7 @@ CREATE TABLE `customer` (
 INSERT INTO `customer` (`id`, `code`, `name`, `notes`) VALUES
 (1, 'bonjour', 'demain ', 'note'),
 (2, 'deux', 'trois', 'quatre'),
-(7, 'tout-valeur-null', 'pour la collone', 'six'),
+(7, 'tout valeur null', 'pour la collone', 'six'),
 (8, 'huit', 'huitre', 'noel'),
 (9, 'demain', 'm\'appartient', 'vent salée'),
 (10, 'extinction', 'des', 'feux');
@@ -104,7 +104,7 @@ INSERT INTO `environment` (`name`, `link`, `ip_adress`, `ssh_port`, `ssh_usernam
 ('name6', 'link6', 'ip6', 6, 'ssh6', 'phpmyadmin6', 0, 6, 6),
 ('name7', 'link7', 'ip7', 7, 'ssh7', 'phpmyadmin7', 1, 7, 7),
 ('name8', 'link8', 'ip8', 8, 'ssh8', 'phpmyadmin8', 2, 8, 8),
-('name9', 'link9', 'ip9', 9, 'ssh9', 'phpmyadmin9', 1, 4, 9),
+('name9', 'link9', 'ip9', 9, 'ssh9', 'phpmyadmin9', 1, 4, 9);
 
 -- --------------------------------------------------------
 
@@ -158,106 +158,9 @@ CREATE TABLE `project` (
 
 INSERT INTO `project` (`id`, `name`, `code`, `lastpass_folder`, `link_mock_ups`, `managed_server`, `notes`, `host_id`, `customer_id`) VALUES
 (1, 'valentin', '13454', 'connais pas mon mot de passe', 'link', 1, 'mrggggllllll', 1, 1),
-(2, 'kmdffdj', '1345678', 'faudrais retenir t\'on mots de passe', 'link', 0, 'murloc', 2, 2),
+(2, '', '1345678', 'faudrais retenir t\'on mots de passe', 'link', 0, 'murloc', 2, 2),
 (7, 'iceheat', '8987545', 'lastpass_folder', 'link', 1, 'euh', 7, 7),
-(8, 'ohhhhhhhhhhhhhhhhhh', 'ok', 'demain', 'link', 0, 'test', 4, 8),
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `contact`
---
-ALTER TABLE `contact`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `host_id` (`host_id`),
-  ADD KEY `customer_id` (`customer_id`);
-
---
--- Index pour la table `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `environment`
---
-ALTER TABLE `environment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `project_id` (`project_id`);
-
---
--- Index pour la table `host`
---
-ALTER TABLE `host`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `project`
---
-ALTER TABLE `project`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `host_id` (`host_id`),
-  ADD KEY `customer_id` (`customer_id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `contact`
---
-ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT pour la table `customer`
---
-ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT pour la table `environment`
---
-ALTER TABLE `environment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT pour la table `host`
---
-ALTER TABLE `host`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT pour la table `project`
---
-ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `contact`
---
-ALTER TABLE `contact`
-  ADD CONSTRAINT `contact_ibfk_1` FOREIGN KEY (`host_id`) REFERENCES `host` (`id`),
-  ADD CONSTRAINT `contact_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`);
-
---
--- Contraintes pour la table `environment`
---
-ALTER TABLE `environment`
-  ADD CONSTRAINT `environment_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`);
-
---
--- Contraintes pour la table `project`
---
-ALTER TABLE `project`
-  ADD CONSTRAINT `project_ibfk_1` FOREIGN KEY (`host_id`) REFERENCES `host` (`id`),
-  ADD CONSTRAINT `project_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`);
+(8, 'ohhhhhhhhhhhhhhhhhh', 'ok', 'demain', 'link', 0, 'test', 4, 8);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
