@@ -158,7 +158,7 @@ CREATE TABLE `project` (
 
 INSERT INTO `project` (`id`, `name`, `code`, `lastpass_folder`, `link_mock_ups`, `managed_server`, `notes`, `host_id`, `customer_id`) VALUES
 (1, 'valentin', '13454', 'connais pas mon mot de passe', 'link', 1, 'mrggggllllll', 1, 1),
-(2, '', '1345678', 'faudrais retenir t\'on mots de passe', 'link', 0, 'murloc', 2, 2),
+(2, 'louka', '1345678', 'faudrais retenir t\'on mots de passe', 'link', 0, 'murloc', 2, 2),
 (7, 'iceheat', '8987545', 'lastpass_folder', 'link', 1, 'euh', 7, 7),
 (8, 'ohhhhhhhhhhhhhhhhhh', 'ok', 'demain', 'link', 0, 'test', 4, 8);
 COMMIT;
